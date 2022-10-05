@@ -1,16 +1,19 @@
 <template>
   <div class="w-screen h-screen bg-slate-900">
     <Header />
+    <TaskContainer />
   </div>
 </template>
 
 <script>
 import Header from "./components/Header.vue";
+import TaskContainer from "./components/TaskContainer.vue";
 
 export default {
   name: "App",
   components: {
-    Header
+    Header,
+    TaskContainer
 },
 };
 </script>
