@@ -1,6 +1,6 @@
 <template>
   <InputTask @sendTask="addTask"/>
-  <TaskList :tasks="arrayTasks" />
+  <TaskList :tasks="arrayTasks" @changeState="changeTaskState" />
 </template>
 
 <script>
@@ -21,6 +21,15 @@ export default {
                 date: new Date(),
                 description: e.target.value,
             });
+        },
+        changeTaskState(id){
+            const newArrayTask = this.arrayTasks.map(task=>{
+                if(task.id === id){
+                    task.state = !task.state
+                }
+                return task;
+            });
+            this.arrayTasks = newArrayTask;
         }
     },  
     components: { InputTask, TaskList },
