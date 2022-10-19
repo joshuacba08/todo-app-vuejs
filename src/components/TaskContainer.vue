@@ -1,6 +1,8 @@
 <template>
-  <InputTask @sendTask="addTask"/>
-  <TaskList :tasks="arrayTasks" @changeState="changeTaskState" />
+  <div class="relative bottom-24">
+    <InputTask @sendTask="addTask"/>
+    <TaskList :tasks="arrayTasks" @changeState="changeTaskState" @clearComplete="clearCompleteTasks" @deleteTask="deleteTaskById" />
+  </div>
 </template>
 
 <script>
@@ -30,6 +32,14 @@ export default {
                 return task;
             });
             this.arrayTasks = newArrayTask;
+        },
+        clearCompleteTasks(){
+            const result = this.arrayTasks.filter( task => task.state !== true);
+            this.arrayTasks = result;
+        },
+        deleteTaskById(id){
+            const result = this.arrayTasks.filter( task => task.id !== id);
+            this.arrayTasks = result;
         }
     },  
     components: { InputTask, TaskList },
